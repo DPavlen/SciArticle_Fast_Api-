@@ -1,0 +1,53 @@
+[tool.poetry]
+name = "SciArticle_Fast_Api-"
+version = "0.1.0"
+description = "SciArticle_Fast_Api-"
+authors = ["DPavlen"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.100.0"
+pydantic = "^2.1.1"
+python-dotenv = "^1.0.0"
+httpx = "^0.24.1"
+gunicorn = "^21.2.0"
+orjson = "^3.9.2"
+uvicorn = "^0.23.1"
+pydantic-settings = "^2.0.2"
+sqlalchemy = { extras = ["asyncio"], version = "^2.0.25" }
+alembic = "^1.13.1"
+psycopg = { extras = ["binary"], version = "^3.1.17" }
+pyjwt = "^2.8.0"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.1.9"
+mypy = "^1.8.0"
+pre-commit = "^3.6.0"
+types-redis = "^4.6.0.3"
+
+[tool.ruff]
+line-length = 120
+extend-exclude = [
+    "app/database/migrations/*.py",
+    "app/database/migrations/versions/*.py",
+]
+force-exclude = true
+
+
+[tool.ruff.lint]
+preview = true
+select = [
+    "E", # pycodestyle error
+    "W", # pycodestyle warning
+    "F", # pyflakes
+    "I", # isort
+    "N", # pep8-naming
+] # all rules here https://docs.astral.sh/ruff/rules/#pep8-naming-n
+fixable = ["F401", "E501"]
+ignore = ["E203"]
+
+[tool.ruff.lint.isort]
+lines-after-imports = -1
+known-first-party = ["app", "database",]
